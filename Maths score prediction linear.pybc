@@ -1,0 +1,69 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyPbLV7rkQ4WDzZvHWX4QhFu",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/srikanth03012005/Digital_portfolio/blob/main/Maths%20score%20prediction%20linear.pybc\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "\n",
+        "from sklearn.linear_model import LinearRegression\n",
+        "import numpy as np\n",
+        "\n",
+        "# Sample data: [Hours Studied], [Math Score]\n",
+        "X = np.array([[1], [2], [3], [4], [5]])      # Hours Studied\n",
+        "y = np.array([50, 55, 65, 70, 75])           # Math Scores\n",
+        "\n",
+        "# Create the model\n",
+        "model = LinearRegression()\n",
+        "\n",
+        "# Train the model\n",
+        "model.fit(X, y)\n",
+        "\n",
+        "# Predict math score for 6 hours of study\n",
+        "predicted_score = model.predict([[6]])\n",
+        "print(\"Predicted Math Score for 6 hours of study:\", predicted_score[0])"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "xy9XgjiqwHlQ",
+        "outputId": "9fa7c34d-d2b1-495d-fae5-8e548e1ffc66"
+      },
+      "execution_count": 5,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Predicted Math Score for 6 hours of study: 82.5\n"
+          ]
+        }
+      ]
+    }
+  ]
+}
