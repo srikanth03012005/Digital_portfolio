@@ -1,0 +1,87 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyOPlowOANpREKdIUgCUkJ+M",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/srikanth03012005/Digital_portfolio/blob/main/feature%20engineering%202\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 1,
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "tiXZgmoToGSp",
+        "outputId": "20889423-5c6b-4bf6-c223-a5982ba8cb92"
+      },
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "          City Building_Type  Height  Chicago  Houston  Los Angeles  New York  \\\n",
+            "0     New York   Residential     100    False    False        False      True   \n",
+            "1  Los Angeles    Commercial     200    False    False         True     False   \n",
+            "2      Chicago   Residential     150     True    False        False     False   \n",
+            "3      Houston    Commercial     300    False     True        False     False   \n",
+            "4     New York   Residential     120    False    False        False      True   \n",
+            "5  Los Angeles    Commercial     250    False    False         True     False   \n",
+            "\n",
+            "   Commercial  Residential  Volume  \n",
+            "0       False         True  250000  \n",
+            "1        True        False  500000  \n",
+            "2       False         True  375000  \n",
+            "3        True        False  750000  \n",
+            "4       False         True  300000  \n",
+            "5        True        False  625000  \n"
+          ]
+        }
+      ],
+      "source": [
+        "import pandas as pd\n",
+        "\n",
+        "# Create a sample dataset\n",
+        "data = {\n",
+        "    'City': ['New York', 'Los Angeles', 'Chicago', 'Houston', 'New York', 'Los Angeles'],\n",
+        "    'Building_Type': ['Residential', 'Commercial', 'Residential', 'Commercial', 'Residential', 'Commercial'],\n",
+        "    'Height': [100, 200, 150, 300, 120, 250]\n",
+        "}\n",
+        "df = pd.DataFrame(data)\n",
+        "\n",
+        "# Feature engineering: One-hot encoding for categorical variables\n",
+        "city_one_hot = pd.get_dummies(df['City'])\n",
+        "building_type_one_hot = pd.get_dummies(df['Building_Type'])\n",
+        "\n",
+        "# Concatenate one-hot encoded features with original dataframe\n",
+        "df = pd.concat([df, city_one_hot, building_type_one_hot], axis=1)\n",
+        "\n",
+        "# Feature engineering: Calculate building volume (assuming width and depth are 50 and 50)\n",
+        "df['Volume'] = df['Height'] * 50 * 50\n",
+        "\n",
+        "print(df)"
+      ]
+    }
+  ]
+}
